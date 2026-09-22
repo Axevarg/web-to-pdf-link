@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import logoAsset from "@/assets/uaeh-logo.png.asset.json";
-import fotoAsset from "@/assets/foto-alumna.png.asset.json";
+import fotoAsset from "@/assets/foto-axel.jpg.asset.json";
 import { generarComprobantePdf } from "@/lib/comprobante-pdf";
 
 export const Route = createFileRoute("/")({
@@ -69,12 +69,12 @@ function Comprobante() {
                   Número de cuenta
                 </span>
                 <span className="bg-uaeh-red px-2 py-1 text-[11px] font-bold text-primary-foreground">
-                  423188
+                  423203
                 </span>
               </div>
               <div className="px-2 pb-3 text-[7px] font-bold leading-relaxed text-primary-foreground">
-                <p>CAMPOS BATRIS</p>
-                <p>PATRICIA</p>
+                <p>VARGAS BAUTISTA</p>
+                <p>AXEL GABRIEL</p>
               </div>
             </div>
             <img src={fotoAsset.url} alt="Fotografía del alumno" className="h-[113px] w-[89px] object-cover" />
