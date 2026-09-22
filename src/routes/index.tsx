@@ -146,13 +146,6 @@ function Comprobante() {
           uaeh<span className="text-uaeh-red">.edu.mx</span>
         </p>
 
-        <button
-          onClick={descargar}
-          disabled={generando}
-          className="mt-8 inline-flex items-center justify-center rounded bg-uaeh-red px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
-        >
-          {generando ? "Generando PDF…" : "Descargar comprobante en PDF"}
-        </button>
       </main>
     </div>
   );
