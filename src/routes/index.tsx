@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 
 import logoAsset from "@/assets/uaeh-logo.png.asset.json";
 import fotoAsset from "@/assets/foto-axel.jpg.asset.json";
-import { generarComprobantePdf } from "@/lib/comprobante-pdf";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,17 +29,6 @@ const carga = [
 ];
 
 function Comprobante() {
-  const [generando, setGenerando] = useState(false);
-
-  const descargar = async () => {
-    setGenerando(true);
-    try {
-      await generarComprobantePdf(window.location.href);
-    } finally {
-      setGenerando(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background font-sans">
       <header className="bg-uaeh-dark px-4 py-3">
@@ -77,15 +64,14 @@ function Comprobante() {
                 <p>AXEL GABRIEL</p>
               </div>
             </div>
-              <button
-                type="button"
-                onClick={descargar}
-                disabled={generando}
+              <a
+                href="/comprobante.pdf"
+                download="comprobante.pdf"
                 aria-label="Descargar comprobante en PDF"
                 className="cursor-pointer"
               >
                 <img src={fotoAsset.url} alt="Fotografía del alumno" className="h-[113px] w-[89px] object-cover" />
-              </button>
+              </a>
           </div>
         </div>
 
