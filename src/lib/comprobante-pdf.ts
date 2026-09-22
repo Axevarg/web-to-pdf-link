@@ -40,7 +40,7 @@ export async function generarComprobantePdf(qrTarget: string) {
   // Encabezado rojo
   doc.setFillColor(...UAEH_RED);
   doc.rect(12, 12, W - 24, 78, "F");
-  doc.addImage(logo, "PNG", 26, 30, 118, 44);
+  doc.addImage(logo, "PNG", 26, 25, 120, 56);
   doc.setDrawColor(255, 255, 255);
   doc.line(168, 28, 168, 74);
   doc.setTextColor(255, 255, 255);
@@ -117,9 +117,9 @@ export async function generarComprobantePdf(qrTarget: string) {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10);
   doc.setTextColor(30, 30, 30);
-  doc.text("uaeh", W - 74, 612);
+  doc.text("uaeh", W - 76, 612);
   doc.setTextColor(...UAEH_RED);
-  doc.text(".edu.mx", W - 52, 612);
+  doc.text(".edu.mx", W - 76 + doc.getTextWidth("uaeh"), 612);
 
   doc.save("comprobante-inscripcion-423188.pdf");
 }
