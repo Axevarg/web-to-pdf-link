@@ -150,3 +150,111 @@
     color: var(--color-foreground);
   }
 }
+
+/* School reference: compact Arial tables with alternating gray rows. */
+.enrollment-page {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #001b3d;
+}
+.school-header {
+  width: 231px;
+  margin: 0 auto;
+}
+.school-header img {
+  display: block;
+  width: 231px;
+  height: 68px;
+}
+.enrollment-main {
+  width: 297px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 0 16px;
+  text-align: center;
+}
+.enrollment-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  height: 25px;
+  font-size: 7px;
+}
+.enrollment-status > span:first-child {
+  border-right: 1px solid #e1e1e1;
+  padding: 8px 18px 8px 0;
+}
+.status-enrolled {
+  padding-left: 15px;
+  color: #80bc00;
+  font-size: 12px;
+  font-weight: 700;
+}
+.academic-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  color: #001b3d;
+}
+.academic-table td,
+.academic-table th {
+  border: 1px solid #d9e1eb;
+  height: 15px;
+  padding: 0 1px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: 400;
+}
+.academic-table .font-bold {
+  font-weight: 700;
+}
+.institution-table {
+  width: 220px;
+  margin-top: 12px;
+  font-size: 7px;
+}
+.institution-table tr:nth-child(odd),
+.course-table tbody tr:nth-child(odd) {
+  background: #f1f1f1;
+}
+.institution-table tr:first-child {
+  color: #7b8795;
+  font-size: 6px;
+}
+.institution-table tr:nth-child(3) td:nth-child(odd),
+.institution-table tr:nth-child(4) td:nth-child(3) {
+  color: #7b8795;
+}
+.course-title {
+  margin-top: 5px;
+  margin-bottom: 7px;
+  font-size: 7px;
+  line-height: 10px;
+}
+.course-table {
+  width: 275px;
+  max-width: 100%;
+  font-size: 5.5px;
+}
+.course-table td,
+.course-table th {
+  color: #7b8795;
+  white-space: nowrap;
+}
+.course-table th {
+  font-size: 6px;
+}
+.school-footer {
+  margin-top: 13px;
+  font-size: 6px;
+  line-height: 8px;
+}
+.school-footer span {
+  color: #7b8795;
+}
+.download-error {
+  margin: 12px;
+  color: #b00020;
+  font-size: 12px;
+}

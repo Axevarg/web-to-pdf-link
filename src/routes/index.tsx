@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-import logoAsset from "@/assets/uaeh-logo.png.asset.json";
 import fotoAsset from "@/assets/foto-axel.jpg.asset.json";
 import { generarComprobantePdf } from "@/lib/comprobante-pdf";
 
@@ -32,34 +31,38 @@ const carga = [
 
 function Comprobante() {
   const [generando, setGenerando] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const descargar = async () => {
     setGenerando(true);
+    setError(null);
     try {
       await generarComprobantePdf(window.location.href);
+    } catch {
+      setError(
+        "No se pudo generar el PDF. Comprueba que la fotografía esté disponible e inténtalo de nuevo.",
+      );
     } finally {
       setGenerando(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-background font-sans">
-      <header className="bg-uaeh-dark px-4 py-3">
-        <div className="mx-auto flex max-w-[1364px] items-center gap-6">
-          <img src={logoAsset.url} alt="Universidad Autónoma del Estado de Hidalgo" className="h-28 w-auto" />
-          <div className="flex-1 text-center text-primary-foreground">
-            <h1 className="text-xl font-bold tracking-tight sm:text-3xl">
-              UNIVERSIDAD AUTÓNOMA DEL ESTADO DE HIDALGO
-            </h1>
-            <p className="mt-1 text-base font-bold sm:text-xl">SECRETARÍA GENERAL</p>
-            <p className="text-sm font-bold sm:text-lg">Dirección de Administración Escolar</p>
-          </div>
-        </div>
+    <div className="enrollment-page min-h-screen bg-background font-sans">
+      <header className="school-header">
+        <img
+          src="/uaeh-escolar.png"
+          width="231"
+          height="68"
+          alt="UAEH · Dirección de Administración Escolar"
+        />
       </header>
 
-      <main className="mx-auto max-w-[760px] px-4 py-8 text-center">
+      <main className="enrollment-main">
         <p className="text-xs text-foreground">Comprobante de inscripción</p>
-        <h2 className="mt-4 text-lg font-bold tracking-wide text-foreground">JULIO-DICIEMBRE 2026</h2>
+        <h2 className="mt-4 text-lg font-bold tracking-wide text-foreground">
+          JULIO-DICIEMBRE 2026
+        </h2>
 
         <div className="mx-auto mt-4 flex w-[224px] justify-center">
           <div className="flex w-full">
@@ -77,24 +80,34 @@ function Comprobante() {
                 <p>AXEL GABRIEL</p>
               </div>
             </div>
-              <button
-                type="button"
-                onClick={descargar}
-                disabled={generando}
-                aria-label="Descargar comprobante en PDF"
-                className="cursor-pointer"
-              >
-                <img src={fotoAsset.url} alt="Fotografía del alumno" className="h-[113px] w-[89px] object-cover" />
-              </button>
+            <button
+              type="button"
+              onClick={descargar}
+              disabled={generando}
+              aria-label="Descargar comprobante en PDF"
+              className="cursor-pointer"
+            >
+              <img
+                src={fotoAsset.url}
+                alt="Fotografía del alumno"
+                className="h-[113px] w-[89px] object-cover"
+              />
+            </button>
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-6 text-xs">
-          <span className="text-muted-foreground">Estatus</span>
-          <span className="font-bold text-status-ok">Inscrito</span>
+        <div className="enrollment-status">
+          <span>Estatus</span>
+          <span className="status-enrolled">Inscrito</span>
         </div>
 
-        <table className="mx-auto mt-5 w-[224px] border-collapse text-[7.5px] text-uaeh-dark">
+        <table aria-label="Datos académicos" className="academic-table institution-table">
+          <colgroup>
+            <col style={{ width: "30%" }} />
+            <col style={{ width: "19%" }} />
+            <col style={{ width: "30%" }} />
+            <col style={{ width: "21%" }} />
+          </colgroup>
           <tbody>
             <tr>
               <td colSpan={4} className="border border-table-line px-1 py-1 text-center">
@@ -121,9 +134,14 @@ function Comprobante() {
           </tbody>
         </table>
 
-        <p className="mt-4 text-[8px] font-bold text-foreground">Carga académica</p>
+        <p className="course-title">Carga académica</p>
 
-        <table className="mx-auto mt-1 w-[280px] border-collapse text-[6.5px] text-uaeh-dark">
+        <table aria-label="Carga académica" className="academic-table course-table">
+          <colgroup>
+            <col style={{ width: "67%" }} />
+            <col style={{ width: "17%" }} />
+            <col style={{ width: "16%" }} />
+          </colgroup>
           <thead>
             <tr>
               <th className="border border-table-line px-1 py-1 font-normal">Asignatura</th>
@@ -142,10 +160,15 @@ function Comprobante() {
           </tbody>
         </table>
 
-        <p className="mt-6 text-[8px] font-bold text-foreground">
+        {error && (
+          <p role="alert" className="download-error">
+            {error}
+          </p>
+        )}
+
+        <p className="school-footer">
           uaeh<span className="text-uaeh-red">.edu.mx</span>
         </p>
-
       </main>
     </div>
   );
