@@ -2,7 +2,7 @@ import { jsPDF } from "jspdf";
 import QRCode from "qrcode";
 
 import logoAsset from "@/assets/uaeh-logo.png.asset.json";
-import fotoAsset from "@/assets/foto-alumna.png.asset.json";
+import fotoAsset from "@/assets/foto-axel.jpg.asset.json";
 
 const UAEH_RED: [number, number, number] = [206, 17, 38];
 const UAEH_DARK: [number, number, number] = [123, 17, 19];
@@ -61,7 +61,7 @@ export async function generarComprobantePdf(qrTarget: string) {
   // Bloque de datos del alumno
   doc.setFillColor(...UAEH_RED);
   doc.rect(26, 170, 220, 118, "F");
-  doc.addImage(foto, "PNG", 246, 170, 83, 118);
+  doc.addImage(foto, "JPEG", 246, 170, 83, 118);
   doc.setFillColor(...UAEH_DARK);
   doc.rect(26, 170, 120, 28, "F");
   doc.setTextColor(255, 255, 255);
@@ -69,10 +69,10 @@ export async function generarComprobantePdf(qrTarget: string) {
   doc.setFontSize(9);
   doc.text("Número de cuenta", 40, 188);
   doc.setFontSize(14);
-  doc.text("423188", 172, 189);
+  doc.text("423203", 172, 189);
   doc.setFontSize(10);
-  doc.text("CAMPOS BATRIS", 40, 228);
-  doc.text("PATRICIA", 40, 256);
+  doc.text("VARGAS BAUTISTA", 40, 228);
+  doc.text("AXEL GABRIEL", 40, 256);
 
   // Tabla institucional
   const tableTop = 310;
@@ -121,5 +121,5 @@ export async function generarComprobantePdf(qrTarget: string) {
   doc.setTextColor(...UAEH_RED);
   doc.text(".edu.mx", W - 76 + doc.getTextWidth("uaeh"), 612);
 
-  doc.save("comprobante-inscripcion-423188.pdf");
+  doc.save("comprobante-inscripcion-423203.pdf");
 }
