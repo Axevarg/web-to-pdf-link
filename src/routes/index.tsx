@@ -77,7 +77,15 @@ function Comprobante() {
                 <p>AXEL GABRIEL</p>
               </div>
             </div>
-            <img src={fotoAsset.url} alt="Fotografía del alumno" className="h-[113px] w-[89px] object-cover" />
+              <button
+                type="button"
+                onClick={descargar}
+                disabled={generando}
+                aria-label="Descargar comprobante en PDF"
+                className="cursor-pointer"
+              >
+                <img src={fotoAsset.url} alt="Fotografía del alumno" className="h-[113px] w-[89px] object-cover" />
+              </button>
           </div>
         </div>
 
